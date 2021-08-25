@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 });
 
 // url routing
-var main = require('./main');
+var main = require('./main/main');
 var email = require('./email');
 var join = require('./join/index');
 
