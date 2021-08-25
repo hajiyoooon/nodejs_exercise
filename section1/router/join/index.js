@@ -24,9 +24,15 @@ router.get('/', function(req, res) {
     res.render('join.ejs', {'message' : msg});
 });
 
-// passport.serializeUser(() => {
+passport.serializeUser((user, done) => {
+    console.log('passport session save : ', user.id);
+    done(null, user.id);
+});
 
-// })
+passport.deserializeUser((id, done) => {
+    console.log('passport session save : ', id);
+    done(null, id);
+})
 
 passport.use('local-join', new LocalStrategy({
     usernameField : 'email',
@@ -34,7 +40,7 @@ passport.use('local-join', new LocalStrategy({
     passReqToCallback : true,
     }, (req, email, password, done) => {
         console.log('local-join callback called');
-        let query = connection.query(
+        let query = conn.query(
             `select * from user where email="`, [email], (err, rows) => {
                 if (err) return done(err);
 
