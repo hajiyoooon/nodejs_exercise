@@ -41,7 +41,7 @@ passport.use('local-join', new LocalStrategy({
     }, (req, email, password, done) => {
         console.log('local-join callback called');
         let query = conn.query(
-            `select * from user where email="`, [email], (err, rows) => {
+            `select * from user where email=?`, [email], (err, rows) => {
                 if (err) return done(err);
 
                 if(rows.length) {
