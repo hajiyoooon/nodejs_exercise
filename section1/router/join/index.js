@@ -52,7 +52,7 @@ passport.use('local-join', new LocalStrategy({
                     let query = conn.query(
                         `insert into user set ?`, sql, (err, rows) => {
                             if (err) throw err;
-                            return done (null, {'email' : email, 'id' : rows.insertId})
+                            return done (null, {'email' : email, 'id' : rows.insertId+1})
                         }
                     )
                 }

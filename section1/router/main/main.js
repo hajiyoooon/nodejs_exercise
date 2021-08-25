@@ -6,7 +6,7 @@ var path = require('path');
 router.get('/', function(req, res) {
     console.log(`main js loaded ${req.user}`)
     let id = req.user;
-    // res.sendFile(path.join(__dirname, `../public/main.html`));
+    if (!id) res.render('login.ejs');
     res.render('main.ejs', {'id' : id});
 });
 
