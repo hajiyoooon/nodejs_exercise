@@ -30,7 +30,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    console.log('passport session save : ', id);
+    console.log('passport session get : ', id);
     done(null, id);
 })
 
