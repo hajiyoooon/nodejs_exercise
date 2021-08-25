@@ -49,8 +49,8 @@ passport.use('local-join', new LocalStrategy({
                     return done(null, false, {message:'your email is already exist'});
                 } else {
                     let sql = {email : email, pw: password};
-                    let query = connection.query(
-                        `insert into suer set ?`, sql, (err, rows) => {
+                    let query = conn.query(
+                        `insert into user set ?`, sql, (err, rows) => {
                             if (err) throw err;
                             return done (null, {'email' : email, 'id' : rows.insertId})
                         }
