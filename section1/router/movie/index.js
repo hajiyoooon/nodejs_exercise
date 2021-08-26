@@ -51,5 +51,24 @@ router.post('/', (req, res) => {
     });
 })
 
+// /movie/:title, post
+router.get('/:title', (req, res) => {
+    let title = req.params.title;
+    
+    let query = conn.query(
+        `select * from movie where title="${title}"`, (err, rows, fields) => {
+            if (err) throw err;
+
+            let responseData = {};
+            if (rows[0]) {
+                responseData.result = 1;
+                responseData.data = rows;
+                return res.json(responseData);
+            }
+
+            return res.json({'result' : 0});
+    });
+})
+
 
 module.exports = router
