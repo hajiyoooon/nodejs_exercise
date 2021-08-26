@@ -10,5 +10,7 @@ router.get('/', (req, res)=> {
 // url routing
 var login = require('./login/index');
 router.use('/login', login);
+var join = require('./join/index');
+router.use('/join', join);
 
 module.exports = router;
