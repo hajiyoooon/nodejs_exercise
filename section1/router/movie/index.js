@@ -23,6 +23,8 @@ router.get('/', (req, res) => {
     let query = conn.query(
         `select title from movie`, (err, rows, fields) => {
             if (err) throw err;
+
+            let responseData = {};
             if (rows.length) {
                 responseData.result = 1;
                 responseData.data = rows;
@@ -33,6 +35,21 @@ router.get('/', (req, res) => {
     });
 })
 
-//
+// /movie, post
+router.post('/', (req, res) => {
+    let title = req.body.title;
+    let type = req.body.type;
+    let grade = req.body.grade;
+    let actor = req.body.actor;
+    
+    let sql = {title, type, grade, actor};
+    let query = conn.query(
+        `insert into movie set ?`, sql, (err, rows, fields) => {
+            if (err) throw err;
+
+            return res.json({'result' : 1});
+    });
+})
+
 
 module.exports = router
