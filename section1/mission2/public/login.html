@@ -7,7 +7,7 @@
     <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form action="#" method="post">
                 <h1>Create Account</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -33,7 +33,7 @@
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+                <button id="login">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -97,6 +97,15 @@
             });
         });
 
+        let loginBtn = document.getElementById('login');
+        loginBtn.addEventListener('click', () => {
+            let email = document.forms[1].elements[0].value;
+            let password = document.forms[1].elements[1].value;
+
+            sendAjax(`${document.location.origin}/login`, {
+                'email' : email, 'password': password
+            });
+        });
 
     </script>
 </body>
