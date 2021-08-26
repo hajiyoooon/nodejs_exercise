@@ -17,4 +17,5 @@ router.use('/main', main);
 router.use('/email', email);
 router.use('/join', join);
 router.use('/login', login);
+router.use('/logout', login);
 module.exports = router;
