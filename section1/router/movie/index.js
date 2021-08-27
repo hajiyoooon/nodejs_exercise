@@ -70,5 +70,24 @@ router.get('/:title', (req, res) => {
     });
 })
 
+// /movie/:title, post
+router.delete('/:title', (req, res) => {
+    let title = req.params.title;
+    
+    let query = conn.query(
+        `delete from movie where title="${title}"`, (err, rows, fields) => {
+            if (err) throw err;
+
+            let responseData = {};
+            if (rows.affectedRow === 1) {
+                responseData.result = 1;
+                responseData.data = title;
+            } else {
+                responseData.result = 0;
+            }
+
+            return res.json(responseData);
+    });
+})
 
 module.exports = router
