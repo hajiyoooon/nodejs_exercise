@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     if (loginHelper.login({'email': req.body.email, 'password' : req.body.password})) {
-        res.render('main.ejs',{ 'email' : req.body.email, 'message' : 'login succeed'});
+        res.redirect('/main');
     } else {
         res.json({'message' : 'login failed'});
     }

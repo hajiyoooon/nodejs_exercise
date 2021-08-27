@@ -7,9 +7,14 @@ router.get('/', (req, res)=> {
     res.sendFile(path.join(__dirname, `../public/login.html`))
 });
 
+router.get('/main', (req, res) => {
+    res.render('main.ejs');
+});
+
 // url routing
 var login = require('./login/index');
 router.use('/login', login);
+
 var join = require('./join/index');
 router.use('/join', join);
 
