@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     if (loginHelper.login({'email': req.body.email, 'password' : req.body.password})) {
-        console.log(req.session);
+        res.cookie('remember', 1, {maxAge : 60000});
         res.redirect('/main');
     } else {
         res.json({'message' : 'login failed'});

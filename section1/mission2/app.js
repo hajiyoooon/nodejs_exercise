@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var router = require('./router/index');
 var cookieSession = require('cookie-session');
+var cookieParser = require('cookie-parser');
 
 app.set('view engine', 'ejs');
 
