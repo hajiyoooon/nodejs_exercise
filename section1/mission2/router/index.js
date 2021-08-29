@@ -9,7 +9,7 @@ router.get('/', (req, res)=> {
     if (loginHelper.sessionExists(req.session)) {
         res.redirect('/main');
     } else {
-        res.sendFile(path.join(__dirname, '/public/login.html'));
+        res.sendFile(path.join(__dirname, '../public/login.html'));
     }
 });
 
@@ -23,5 +23,8 @@ router.use('/login', login);
 
 var join = require('./join/index');
 router.use('/join', join);
+
+var join = require('./logout/index');
+router.use('/logout', join);
 
 module.exports = router;

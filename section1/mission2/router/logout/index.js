@@ -5,7 +5,7 @@ var loginHelper = require('../session');
 
 router.get('/', (req, res) => {
     if (loginHelper.logout(req)) {
-        res.redirect('');
+        res.redirect();
     } else {
         res.json({'message' : 'logout failed'});
     }
