@@ -12,8 +12,9 @@ conn.connect();
 
 let users = new Map();
 
-function sessionExists (user) {
-    return users.has(user.email);
+function sessionExists (email) {
+    console.log(`sessionExists : ${email}`);
+    return users.has(email);
 }
 
 function login(user) {
