@@ -5,7 +5,12 @@ var path = require('path');
 var cookieSession = require('cookie-session');
 
 router.get('/', (req, res)=> {
-    res.sendFile(path.join(__dirname, `../public/login.html`))
+    var loginHelper = require('./session');
+    if (loginHelper.sessionExists(req.session)) {
+        res.redirect('/main');
+    } else {
+        res.sendFile(path.join(__dirname, '/public/login.html'));
+    }
 });
 
 router.get('/main', (req, res) => {

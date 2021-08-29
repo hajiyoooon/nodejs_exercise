@@ -4,10 +4,10 @@ var router = express.Router();
 var loginHelper = require('../session');
 
 router.get('/', (req, res) => {
-    if (loginHelper.logout({'email': req.body.email})) {
-        res.redirect('/main');
+    if (loginHelper.logout(req)) {
+        res.redirect('');
     } else {
-        res.json({'message' : 'login failed'});
+        res.json({'message' : 'logout failed'});
     }
 });
 

@@ -12,32 +12,28 @@ conn.connect();
 
 let users = new Map();
 
-function sessionExists (email) {
-    console.log(`sessionExists : ${email}`);
-    return users.has(email);
+function sessionExists (session) {
+    console.log(`sessionExists : ${session.authenticated}`);
+    return session.authenticated;
 }
 
-function login(user) {
+function login(user, req) {
     if (sessionExists(user)) return false;
 
     let query = conn.query(`select * from user where email=?`, user.email, (err, rows, fields) => {
         if (err) throw err;
 
         if (rows[0]) {
-            users.set(user.email, user);
-        } else {
-            return false;
+            req.session.authenticated = true;
+            return true;
         }
     });
 
-    users.set(user.email, user);
-    return true;
+    return false;
 }
 
-function logout(user) {
-    if (!sessionExists(user)) return false;
-
-    users.delete(user.email);
+function logout(req) {
+    req.session.authenticated = false;
     return true;
 }
 
